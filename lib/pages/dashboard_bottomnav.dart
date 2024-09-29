@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/pages/menu/home_menu.dart';
 import 'package:ricomusic/pages/menu/profile_menu.dart';
-import 'package:ricomusic/pages/menu/favorites_menu.dart';
+import 'package:ricomusic/pages/menu/search_menu.dart';
 import 'package:ricomusic/pages/menu/suscribe.dart';
 import 'package:ricomusic/controlleres/dashboard_controller.dart';
 import 'package:ricomusic/widget/mycolor.dart';
@@ -18,7 +18,7 @@ class DashboardPage extends StatelessWidget {
 
     final List<Widget> menus = [
       HomeMenu(),
-      FavoriteMenu(),
+      SearchMenu(),
       TopupMenu(),
       ProfileMenu()
     ];
