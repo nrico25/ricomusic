@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/model/listItem1.dart';
-import 'package:ricomusic/widget/songList.dart'; // Import the reusable widget
+import 'package:ricomusic/widget/songList.dart';
 import 'package:ricomusic/widget/songTrend.dart';
-import 'package:ricomusic/model/model_listview.dart'; // Import the model
-import 'package:ricomusic/widget/mycolor.dart'; // Custom Color class
+import 'package:ricomusic/model/model_listview.dart'; 
+import 'package:ricomusic/widget/mycolor.dart'; 
+import 'package:ricomusic/controlleres/search_controller.dart'; 
 
 class SearchMenu extends StatelessWidget {
   const SearchMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final  SearchLogic controllersearch = Get.put(SearchLogic());
     return Scaffold(
-      backgroundColor: darkBlue, // Warna background dari custom color
-      body: SafeArea( // Tambahkan SafeArea di sini
+      backgroundColor: darkBlue, 
+      body: SafeArea( 
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Padding umum untuk konten
+            padding: const EdgeInsets.symmetric(horizontal: 16.0), 
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // Memastikan konten rata kiri
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20),
 
@@ -32,15 +34,33 @@ class SearchMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
 
-                // ListView untuk MusicCard di bawah SongTrend
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(), // ListView tidak scrollable secara independen
-                  itemCount: musicSearch.length, // Array dari MusicCard
-                  itemBuilder: (context, index) {
-                    return MusicCard(musicSearch: musicSearch[index]); // Enable tap
+                TextField(
+                  onChanged: (value) {
+                    controllersearch.updateSearch(value); 
                   },
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Search for songs...',
+                    hintStyle: TextStyle(color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.1),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  ),
                 ),
+                SizedBox(height: 10),
+
+                Obx(() => ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(), 
+                  itemCount: controllersearch.filteredMusicList.length, 
+                  itemBuilder: (context, index) {
+                    return MusicCard(musicSearch: controllersearch.filteredMusicList[index]); 
+                  },
+                )),
               ],
             ),
           ),

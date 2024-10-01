@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/model/listItem1.dart';
-import 'package:ricomusic/widget/songList.dart'; // Import the reusable widget
+import 'package:ricomusic/widget/songList.dart'; 
 import 'package:ricomusic/widget/songTrend.dart';
-import 'package:ricomusic/model/model_listview.dart'; // Import the model
-import 'package:ricomusic/widget/mycolor.dart'; // Custom Color class
+import 'package:ricomusic/model/model_listview.dart'; 
+import 'package:ricomusic/widget/mycolor.dart'; 
 
 class HomeMenu extends StatelessWidget {
   HomeMenu({super.key});
@@ -12,32 +12,31 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: darkBlue, // Warna background dari custom color
-      body: SafeArea( // Tambahkan SafeArea di sini
+      backgroundColor: darkBlue, 
+      body: SafeArea( 
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Padding umum untuk konten
+            padding: const EdgeInsets.symmetric(horizontal: 16.0), 
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // Memastikan konten rata kiri
+              crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
-                SizedBox(height: 20), // Jarak atas lebih besar agar tidak terlalu mepet
+                SizedBox(height: 20), 
 
-                // Bagian atas: Foto profil dan ikon
+               
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0), // Tambahkan padding agar lebih jauh dari tepi
+                      padding: const EdgeInsets.only(left: 8.0), 
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('images/whitney.jpg'), // Gambar profil
+                        backgroundImage: AssetImage('images/whitney.jpg'),
                         radius: 20,
                       ),
                     ),
-                    // Ikon di pojok kanan atas
                     Padding(
-                      padding: const EdgeInsets.only(right: 8.0), // Tambahkan padding agar lebih jauh dari tepi
+                      padding: const EdgeInsets.only(right: 8.0), 
                       child: Icon(
-                        Icons.notifications, // Menggunakan ikon notifikasi
+                        Icons.notifications, 
                         color: Colors.white,
                         size: 25,
                       ),
@@ -46,7 +45,6 @@ class HomeMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
 
-                // Teks "Top Album"
                 Text(
                   'Top Album',
                   style: TextStyle(
@@ -57,17 +55,17 @@ class HomeMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
 
-                // ListView untuk SongTrend di bagian atas, tampil secara horizontal
+               
                 Container(
-                  height: 180, // Sesuaikan tinggi container untuk gambar
+                  height: 180, 
                   child: ListView.builder(
-                    scrollDirection: Axis.horizontal, // Scroll ke samping
-                    itemCount: musicTrends.length, // Dari array SongTrend
+                    scrollDirection: Axis.horizontal,
+                    itemCount: musicTrends.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(8.0), // Padding untuk gambar
+                        padding: const EdgeInsets.all(8.0), 
                         child: Image.asset(
-                          musicTrends[index].imagePath, // Hanya menampilkan gambar
+                          musicTrends[index].imagePath, 
                           width: 150,
                           height: 150,
                           fit: BoxFit.cover,
@@ -76,9 +74,8 @@ class HomeMenu extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20), // Jarak antara SongTrend dan MusicCard
+                SizedBox(height: 20), 
 
-                // Teks "Recommend for you"
                 Text(
                   'Recommend for you',
                   style: TextStyle(
@@ -89,11 +86,10 @@ class HomeMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
 
-                // ListView untuk MusicCard di bawah SongTrend
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(), // ListView tidak scrollable secara independen
-                  itemCount: musicItems.length, // Array dari MusicCard
+                  physics: NeverScrollableScrollPhysics(), 
+                  itemCount: musicItems.length, 
                   itemBuilder: (context, index) {
                     return MusicCard(musicItem: musicItems[index]);
                   },
