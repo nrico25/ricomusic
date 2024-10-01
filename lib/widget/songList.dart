@@ -2,91 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/model/model_listview.dart'; // Import the model
 
- final List<ModelListview> musicItems = [
-    ModelListview(
-      title: "We Can't Be Friends",
-      artist: "Taylor Swift",
-      streams: "3 Million / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "Wildest Dreams",
-      artist: "Taylor Swift",
-      streams: "560.5k / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "I Have Nothing",
-      artist: "Whitney Houston",
-      streams: "960.5k / steams",
-      imagePath: "images/taylor.jpg",
-    ),
-    ModelListview(
-      title: "We Can't Be Friends",
-      artist: "Taylor Swift",
-      streams: "3 Million / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "Wildest Dreams",
-      artist: "Taylor Swift",
-      streams: "560.5k / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "I Have Nothing",
-      artist: "Whitney Houston",
-      streams: "960.5k / steams",
-      imagePath: "images/taylor.jpg",
-    ),
-    ModelListview(
-      title: "We Can't Be Friends",
-      artist: "Taylor Swift",
-      streams: "3 Million / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "Wildest Dreams",
-      artist: "Taylor Swift",
-      streams: "560.5k / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "I Have Nothing",
-      artist: "Whitney Houston",
-      streams: "960.5k / steams",
-      imagePath: "images/taylor.jpg",
-    ),
-    ModelListview(
-      title: "We Can't Be Friends",
-      artist: "Taylor Swift",
-      streams: "3 Million / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "Wildest Dreams",
-      artist: "Taylor Swift",
-      streams: "560.5k / steams",
-      imagePath: "images/ariana.png",
-    ),
-    ModelListview(
-      title: "I Have Nothing",
-      artist: "Whitney Houston",
-      streams: "960.5k / steams",
-      imagePath: "images/taylor.jpg",
-    ),
-    
-    // Add more items as needed
-  ];
 class MusicCard extends StatelessWidget {
-  final ModelListview musicItem;
+  final ModelListview? musicSearch;
+  final ModelListview? musicItem;
 
-  MusicCard({required this.musicItem});
+  MusicCard({this.musicSearch, this.musicItem});
 
   @override
   Widget build(BuildContext context) {
+    // Use `musicItem` primarily, and fall back to `musicSearch` if available
+    final data = musicItem ?? musicSearch;
+
+    // Ensure that `data` is not null, otherwise provide a fallback or an error widget
+    if (data == null) {
+      return Container(
+        padding: EdgeInsets.all(8),
+        child: Center(
+          child: Text(
+            'No data available',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
+        ),
+      );
+    }
+
     return Container(
-       padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -94,7 +38,7 @@ class MusicCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8), // Adjust for rounded corners
             child: Image.asset(
-              musicItem.imagePath,
+              data.imagePath, // Use the non-null `data` object
               width: 88,
               height: 88,
               fit: BoxFit.cover, // Ensures the image fits nicely
@@ -107,7 +51,7 @@ class MusicCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  musicItem.title,
+                  data.title, // Use the title from the `data`
                   style: TextStyle(
                     fontSize: 16, // Based on Figma's font size
                     fontWeight: FontWeight.w600, // Adjusted for a bold title
@@ -116,7 +60,7 @@ class MusicCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4), // Space between title and artist
                 Text(
-                  musicItem.artist,
+                  data.artist, // Use the artist name from the `data`
                   style: TextStyle(
                     fontSize: 14, // Slightly smaller font for artist name
                     fontWeight: FontWeight.w400,
@@ -125,7 +69,7 @@ class MusicCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4), // Space between artist and streams
                 Text(
-                  musicItem.streams,
+                  data.streams, // Use the streams info from the `data`
                   style: TextStyle(
                     fontSize: 12, // Smaller font for streams info
                     fontWeight: FontWeight.w400,
@@ -137,7 +81,6 @@ class MusicCard extends StatelessWidget {
           ),
         ],
       ),
-      
     );
   }
 }

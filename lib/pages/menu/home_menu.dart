@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ricomusic/model/listItem1.dart';
 import 'package:ricomusic/widget/songList.dart'; // Import the reusable widget
 import 'package:ricomusic/widget/songTrend.dart';
 import 'package:ricomusic/model/model_listview.dart'; // Import the model
@@ -58,7 +59,7 @@ class HomeMenu extends StatelessWidget {
 
                 // ListView untuk SongTrend di bagian atas, tampil secara horizontal
                 Container(
-                  height: 150, // Sesuaikan tinggi container untuk gambar
+                  height: 180, // Sesuaikan tinggi container untuk gambar
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal, // Scroll ke samping
                     itemCount: musicTrends.length, // Dari array SongTrend
@@ -67,8 +68,8 @@ class HomeMenu extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0), // Padding untuk gambar
                         child: Image.asset(
                           musicTrends[index].imagePath, // Hanya menampilkan gambar
-                          width: 120,
-                          height: 120,
+                          width: 150,
+                          height: 150,
                           fit: BoxFit.cover,
                         ),
                       );

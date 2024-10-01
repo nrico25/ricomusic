@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ricomusic/model/listItem1.dart';
 import 'package:ricomusic/widget/songList.dart'; // Import the reusable widget
 import 'package:ricomusic/widget/songTrend.dart';
 import 'package:ricomusic/model/model_listview.dart'; // Import the model
@@ -10,7 +11,7 @@ class SearchMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       backgroundColor: darkBlue, // Warna background dari custom color
       body: SafeArea( // Tambahkan SafeArea di sini
         child: SingleChildScrollView(
@@ -19,7 +20,6 @@ class SearchMenu extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start, // Memastikan konten rata kiri
               children: [
-
                 SizedBox(height: 20),
 
                 Text(
@@ -36,9 +36,9 @@ class SearchMenu extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(), // ListView tidak scrollable secara independen
-                  itemCount: musicItems.length, // Array dari MusicCard
+                  itemCount: musicSearch.length, // Array dari MusicCard
                   itemBuilder: (context, index) {
-                    return MusicCard(musicItem: musicItems[index]);
+                    return MusicCard(musicSearch: musicSearch[index]); // Enable tap
                   },
                 ),
               ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TopupMenu extends StatelessWidget {
-  const TopupMenu({super.key});
+class LibraryMenu extends StatelessWidget {
+  const LibraryMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
