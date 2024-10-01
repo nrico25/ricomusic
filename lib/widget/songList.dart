@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ricomusic/model/model_listview.dart';
 import 'package:get/get.dart';
-import 'package:ricomusic/model/model_listview.dart'; // Import the model
+import 'package:ricomusic/widget/detailPage.dart';
+import 'package:ricomusic/widget/mycolor.dart'; 
+import 'package:ricomusic/widget/detailPage.dart'; // Import the detail page
 
 class MusicCard extends StatelessWidget {
   final ModelListview? musicSearch;
@@ -10,10 +13,8 @@ class MusicCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use `musicItem` primarily, and fall back to `musicSearch` if available
     final data = musicItem ?? musicSearch;
 
-    // Ensure that `data` is not null, otherwise provide a fallback or an error widget
     if (data == null) {
       return Container(
         padding: EdgeInsets.all(8),
@@ -29,57 +30,61 @@ class MusicCard extends StatelessWidget {
       );
     }
 
-    return Container(
-      padding: EdgeInsets.all(8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // ClipRRect to round the corners of the image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8), // Adjust for rounded corners
-            child: Image.asset(
-              data.imagePath, // Use the non-null `data` object
-              width: 88,
-              height: 88,
-              fit: BoxFit.cover, // Ensures the image fits nicely
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => DetailPage(musicItem: data)); // Navigate to DetailPage
+      },
+      child: Container(
+        padding: EdgeInsets.all(8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8), 
+              child: Image.asset(
+                data.imagePath,
+                width: 88,
+                height: 88,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(width: 12), // Space between image and text
-          // Using Expanded to handle text overflow
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  data.title, // Use the title from the `data`
-                  style: TextStyle(
-                    fontSize: 16, // Based on Figma's font size
-                    fontWeight: FontWeight.w600, // Adjusted for a bold title
-                    color: Colors.white,
+            const SizedBox(width: 12), 
+           
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    data.title, 
+                    style: TextStyle(
+                      fontSize: 16, 
+                      fontWeight: FontWeight.w600, 
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4), // Space between title and artist
-                Text(
-                  data.artist, // Use the artist name from the `data`
-                  style: TextStyle(
-                    fontSize: 14, // Slightly smaller font for artist name
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white70, // Slightly faded white for artist
+                  const SizedBox(height: 4), 
+                  Text(
+                    data.artist,
+                    style: TextStyle(
+                      fontSize: 14, 
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white70, 
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4), // Space between artist and streams
-                Text(
-                  data.streams, // Use the streams info from the `data`
-                  style: TextStyle(
-                    fontSize: 12, // Smaller font for streams info
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white54, // Even more faded white for streams
+                  const SizedBox(height: 4), 
+                  Text(
+                    data.streams, 
+                    style: TextStyle(
+                      fontSize: 12, 
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white54, 
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
