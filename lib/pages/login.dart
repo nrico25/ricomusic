@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/widget/mycolor.dart';
+import 'package:ricomusic/widget/button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -26,25 +27,14 @@ class LoginPage extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 30.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    backgroundColor: darkBlue, 
-                  ),
+                child: CustomButton(
+                  text: 'Continue',
                   onPressed: () {
                     Get.toNamed('/dashboard'); 
                   },
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900, 
-                      fontSize: 18,
-                    ),
-                  ),
+                  backgroundColor: darkBlue,
+                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+                  fontSize: 18,
                 ),
               ),
             ),

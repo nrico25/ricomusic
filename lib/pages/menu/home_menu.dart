@@ -24,17 +24,21 @@ class HomeMenu extends StatelessWidget {
 
                
                 Row(
+                  
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0), 
+                      
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('images/whitney.jpg'),
+                        backgroundImage: AssetImage('images/ariana.png'),
                         radius: 20,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0), 
+                      
                       child: Icon(
                         Icons.notifications, 
                         color: Colors.white,

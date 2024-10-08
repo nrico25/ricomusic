@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:ricomusic/widget/mycolor.dart'; 
+import 'package:ricomusic/widget/mycolor.dart';
+import 'package:ricomusic/widget/button.dart';
+
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({super.key});
 
@@ -10,22 +11,19 @@ class ProfileMenu extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-         
           Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.center,
             children: [
-              
               Container(
-                height: 250, 
+                height: 300, 
                 decoration: BoxDecoration(
                   color: darkBlue,
                   borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(30),
+                    bottom: Radius.circular(50),
                   ),
                 ),
               ),
-
               Positioned(
                 bottom: -50, 
                 child: CircleAvatar(
@@ -35,8 +33,6 @@ class ProfileMenu extends StatelessWidget {
               ),
             ],
           ),
-
-          // Text Section
           SizedBox(height: 60), 
           Text(
             "Hi, Taylor Swift",
@@ -46,29 +42,17 @@ class ProfileMenu extends StatelessWidget {
               color: darkBlue, 
             ),
           ),
-
           Spacer(), 
-
-          // Exit Button
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
+            child: CustomButton(
+              text: 'Exit',
               onPressed: () {
-                // Exit functionality
-                    Get.toNamed('/'); 
-                  
+                Get.toNamed('/'); 
               },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                backgroundColor: darkBlue, 
-              ),
-              child: Text(
-                'Exit',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
+              backgroundColor: darkBlue,
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              fontSize: 16,
             ),
           ),
         ],

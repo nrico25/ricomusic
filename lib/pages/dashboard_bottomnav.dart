@@ -28,13 +28,13 @@ class DashboardPage extends StatelessWidget {
     body: menus[dashboardController.selectedIndex.value],
     bottomNavigationBar: Container(
       decoration: BoxDecoration(
-        color: darkBlue, // Background color for BottomNavigationBar
+        color: darkBlue, 
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2), // Color of the shadow
-            spreadRadius: 1, // Spread the shadow
-            blurRadius: 5, // Blur effect for the shadow
-            offset: Offset(0, -2), // Shadow position (x, y), y is negative for upward shadow
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 1, 
+            blurRadius: 5, 
+            offset: Offset(0, -2), 
           ),
         ],
       ),
@@ -52,7 +52,7 @@ class DashboardPage extends StatelessWidget {
               icon: Icon(Icons.person), label: "Profile"),
         ],
         selectedItemColor: lightBlue,
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: const Color.fromARGB(255, 134, 134, 134),
         backgroundColor: darkBlue, // Make sure the background color is consistent
         type: BottomNavigationBarType.fixed, // Ensure background color works with 4+ items
       ),

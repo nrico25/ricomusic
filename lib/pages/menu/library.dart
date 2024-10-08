@@ -35,9 +35,9 @@ class LibraryMenu extends StatelessWidget {
                ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(), 
-                  itemCount: musicItems.length, 
+                  itemCount: topAlbumSongs.length, 
                   itemBuilder: (context, index) {
-                    return MusicCard(topAlbumSongs: topAlbumSongs[index]);
+                    return MusicCard(musicItem: topAlbumSongs[index]);
                   },
                 ),
               ],
