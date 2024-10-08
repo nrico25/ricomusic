@@ -3,13 +3,14 @@ import 'package:ricomusic/model/model_listview.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/widget/detailPage.dart';
 import 'package:ricomusic/widget/mycolor.dart'; 
-import 'package:ricomusic/widget/detailPage.dart'; // Import the detail page
+import 'package:ricomusic/widget/detailPage.dart'; 
 
 class MusicCard extends StatelessWidget {
   final ModelListview? musicSearch;
   final ModelListview? musicItem;
+  final ModelListview? topAlbumSongs;
 
-  MusicCard({this.musicSearch, this.musicItem});
+  MusicCard({this.musicSearch, this.musicItem, this.topAlbumSongs});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class MusicCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailPage(musicItem: data)); // Navigate to DetailPage
+        Get.to(() => DetailPage(musicItem: data)); 
       },
       child: Container(
         padding: EdgeInsets.all(8),

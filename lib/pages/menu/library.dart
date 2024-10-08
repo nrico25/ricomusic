@@ -37,7 +37,7 @@ class LibraryMenu extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(), 
                   itemCount: musicItems.length, 
                   itemBuilder: (context, index) {
-                    return MusicCard(musicItem: topAlbumSongs[index]);
+                    return MusicCard(topAlbumSongs: topAlbumSongs[index]);
                   },
                 ),
               ],
