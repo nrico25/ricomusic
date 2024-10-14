@@ -2,15 +2,14 @@ import 'package:get/get.dart';
 import 'package:ricomusic/model/listItem1.dart';
 
 class SearchLogic extends GetxController {
-  var searchQuery = ''.obs; // Menyimpan kueri pencarian
-  var filteredMusicList = musicSearch.obs; // Asumsi `musicSearch` adalah daftar yang ada
-
+  var searchQuery = ''.obs; // Menyimpan query search
+  var filteredMusicList = musicSearch.obs; 
   // Fungsi untuk memperbarui pencarian
   void updateSearch(String query) {
     searchQuery.value = query;
-    // Filter daftar musik berdasarkan kueri pencarian
+    // Filter daftar musik berdasarkan huruf depan dari kueri pencarian
     filteredMusicList.value = musicSearch.where((music) {
-      return music.title.toLowerCase().contains(query.toLowerCase()); 
+      return music.title.toLowerCase().startsWith(query.toLowerCase());
     }).toList();
   }
 }

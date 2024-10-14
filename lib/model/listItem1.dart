@@ -101,6 +101,7 @@ import 'package:ricomusic/model/model_listview.dart';
 
 
   final List<ModelListview> musicSearch = [
+  // Existing entries
   ModelListview(
     title: "We Can't Be Friends",
     artist: "Taylor Swift",
@@ -149,7 +150,105 @@ import 'package:ricomusic/model/model_listview.dart';
     streams: "3 Million / streams",
     imagePath: "images/frank.png",
   ),
+  // Additional entries
+  ModelListview(
+    title: "Love Story",
+    artist: "Taylor Swift",
+    streams: "6 Million / streams",
+    imagePath: "images/taylor.jpg",
+  ),
+  ModelListview(
+    title: "Hello",
+    artist: "Adele",
+    streams: "10 Million / streams",
+    imagePath: "images/adele.png",
+  ),
+  ModelListview(
+    title: "Bohemian Rhapsody",
+    artist: "Queen",
+    streams: "8 Million / streams",
+    imagePath: "images/queen.png",
+  ),
+  ModelListview(
+    title: "7 rings",
+    artist: "Ariana Grande",
+    streams: "7 Million / streams",
+    imagePath: "images/ariana.png",
+  ),
+  ModelListview(
+    title: "Blinding Lights",
+    artist: "The Weeknd",
+    streams: "12 Million / streams",
+    imagePath: "images/weekend.png",
+  ),
+  ModelListview(
+    title: "Dynamite",
+    artist: "BTS",
+    streams: "15 Million / streams",
+    imagePath: "images/bts.png",
+  ),
+  ModelListview(
+    title: "Watermelon Sugar",
+    artist: "Harry Styles",
+    streams: "4 Million / streams",
+    imagePath: "images/harry.png",
+  ),
+  ModelListview(
+    title: "Fly Me to the Moon",
+    artist: "Frank Sinatra",
+    streams: "9 Million / streams",
+    imagePath: "images/frank.png",
+  ),
+  ModelListview(
+    title: "Cardigan",
+    artist: "Taylor Swift",
+    streams: "5.5 Million / streams",
+    imagePath: "images/taylor.jpg",
+  ),
+  ModelListview(
+    title: "Someone Like You",
+    artist: "Adele",
+    streams: "9.5 Million / streams",
+    imagePath: "images/adele.png",
+  ),
+  ModelListview(
+    title: "Another One Bites the Dust",
+    artist: "Queen",
+    streams: "6.5 Million / streams",
+    imagePath: "images/queen.png",
+  ),
+  ModelListview(
+    title: "Into You",
+    artist: "Ariana Grande",
+    streams: "4.2 Million / streams",
+    imagePath: "images/ariana.png",
+  ),
+  ModelListview(
+    title: "Can't Feel My Face",
+    artist: "The Weeknd",
+    streams: "7.3 Million / streams",
+    imagePath: "images/weekend.png",
+  ),
+  ModelListview(
+    title: "Fake Love",
+    artist: "BTS",
+    streams: "13 Million / streams",
+    imagePath: "images/bts.png",
+  ),
+  ModelListview(
+    title: "Sign of the Times",
+    artist: "Harry Styles",
+    streams: "5.8 Million / streams",
+    imagePath: "images/harry.png",
+  ),
+  ModelListview(
+    title: "Strangers in the Night",
+    artist: "Frank Sinatra",
+    streams: "8.4 Million / streams",
+    imagePath: "images/frank.png",
+ ),
 ];
+
 
   final List<ModelListview> topAlbumSongs = [
     ModelListview(

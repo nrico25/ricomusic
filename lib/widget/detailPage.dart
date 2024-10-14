@@ -10,7 +10,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: darkBlue, // Using your reusable darkBlue color
+      backgroundColor: darkBlue, 
       appBar: AppBar(
         backgroundColor: darkBlue,
         title: Text(musicItem.title, style: TextStyle(color: Colors.white),),
