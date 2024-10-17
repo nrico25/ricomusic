@@ -57,15 +57,16 @@ class HomeMenu extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: musicTrends.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          musicTrends[index].imagePath,
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
-                      );
+                      // return Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Image.asset(
+                      //     musicTrends[index].imagePath,
+                      //     width: 150,
+                      //     height: 150,
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // );
+                      return Songtrend(musicTrends: musicTrends[index]);
                     },
                   ),
                 ),
@@ -84,9 +85,9 @@ class HomeMenu extends StatelessWidget {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: musicItems.length,
+                      itemCount: topMusic.length,
                       itemBuilder: (context, index) {
-                        return MusicCard(musicItem: musicItems[index]);
+                        return MusicCard(musicItem: topMusic[index]);
                       },
                     ),
                   ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ricomusic/model/listItem1.dart';
@@ -57,7 +59,7 @@ class SearchMenu extends StatelessWidget {
               child: Obx(() => ListView.builder(
                 itemCount: controllersearch.filteredMusicList.length,
                 itemBuilder: (context, index) {
-                  return MusicCard(musicSearch: controllersearch.filteredMusicList[index]);
+                  return MusicCard( musicItem: controllersearch.filteredMusicList[index],);
                 },
               )),
             ),

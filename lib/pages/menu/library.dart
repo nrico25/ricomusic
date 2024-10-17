@@ -1,45 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ricomusic/model/listItem1.dart';
+import 'package:ricomusic/controlleres/likeController.dart';
+import 'package:ricomusic/widget/mycolor.dart';
 import 'package:ricomusic/widget/songList.dart';
-import 'package:ricomusic/widget/songTrend.dart';
-import 'package:ricomusic/model/model_listview.dart'; 
-import 'package:ricomusic/widget/mycolor.dart'; 
 
 class LibraryMenu extends StatelessWidget {
-  const LibraryMenu({super.key});
+  final Likecontroller likecontroller = Get.put(Likecontroller());
 
   @override
   Widget build(BuildContext context) {
+    // Memanggil loadTasks untuk memuat data yang disukai
+    likecontroller.loadTasks();
     return Scaffold(
-      backgroundColor: darkBlue, 
-      body: SafeArea( 
+      backgroundColor: darkBlue,
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), 
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20),
-
                 Text(
-                  'Favorite Album Songs?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900,
-                  ),
+                  'Lagu Favorit Anda',
+                  style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w900),
                 ),
                 SizedBox(height: 10),
-
-               ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(), 
-                  itemCount: topAlbumSongs.length, 
-                  itemBuilder: (context, index) {
-                    return MusicCard(musicItem: topAlbumSongs[index]);
-                  },
-                ),
+                Obx(() {
+                  if (likecontroller.tasks.isEmpty) {
+                    return Center(
+                      child: Text('Tidak ada lagu yang disukai', style: TextStyle(color: Colors.white)),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: likecontroller.tasks.length,
+                    itemBuilder: (context, index) {
+                      final song = likecontroller.tasks[index];
+                      return MusicCard(
+                        musicItem: song, // Pass the liked song data to MusicCard
+                      );
+                    },
+                  );
+                }),
               ],
             ),
           ),

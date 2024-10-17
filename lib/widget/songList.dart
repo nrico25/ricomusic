@@ -5,28 +5,20 @@ import 'package:ricomusic/controlleres/likeController.dart';
 import 'package:ricomusic/widget/detailPage.dart';
 
 class MusicCard extends StatelessWidget {
-  final ModelListview? musicSearch;
-  final ModelListview? musicItem;
-  final ModelListview? topAlbumSongs;
+  final ModelListview musicItem;
+  final Likecontroller likecontroller = Get.put(Likecontroller());
 
-  final LikeController taskController = Get.put(LikeController());
-
-  MusicCard({this.musicSearch, this.musicItem, this.topAlbumSongs});
+  MusicCard({required this.musicItem});
 
   @override
   Widget build(BuildContext context) {
-    final data = musicItem ?? musicSearch;
-
-    if (data == null) {
+    if (musicItem == null) {
       return Container(
         padding: EdgeInsets.all(8),
         child: Center(
           child: Text(
             'No data available',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 16),
           ),
         ),
       );
@@ -34,7 +26,7 @@ class MusicCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailPage(musicItem: data));
+        Get.to(() => DetailPage(musicItem: musicItem));
       },
       child: Container(
         padding: EdgeInsets.all(8),
@@ -44,7 +36,7 @@ class MusicCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                data.imagePath,
+                musicItem!.imagePath,
                 width: 88,
                 height: 88,
                 fit: BoxFit.cover,
@@ -56,7 +48,7 @@ class MusicCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data.title,
+                    musicItem!.title,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -65,7 +57,7 @@ class MusicCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    data.artist,
+                    musicItem!.artist,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -74,7 +66,7 @@ class MusicCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    data.streams,
+                    musicItem!.streams,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
@@ -87,33 +79,25 @@ class MusicCard extends StatelessWidget {
             const SizedBox(width: 8),
             GestureDetector(
               onTap: () {
-                if (!data.isLiked) {
-                  taskController.likeSong(data);
+                if (!musicItem!.isLiked) {
+                  likecontroller.addTask(musicItem!);
+                  Get.snackbar('Info', '${musicItem!.title} added to favorites');
                 } else {
-                  Get.defaultDialog(
-                    title: 'Confirmation',
-                    content: Text('Are you sure you want to unlike this song?'),
-                    onConfirm: () {
-                      taskController.unlikeSong(data);
-                      Get.back();
-                    },
-                    textCancel: 'No',
-                    textConfirm: 'Yes',
-                  );
+                  Get.snackbar('Info', 'You can only unlike this song in Library Menu');
                 }
               },
-              child: Obx(()=>AnimatedSwitcher(
+              child: AnimatedSwitcher(
                 duration: Duration(milliseconds: 300),
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return ScaleTransition(scale: animation, child: child);
                 },
                 child: Icon(
-                  data.isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: data.isLiked ? Colors.red : Colors.redAccent,
-                  key: ValueKey<bool>(data.isLiked),
+                  musicItem!.isLiked ? Icons.favorite : Icons.favorite_border,
+                  color: musicItem!.isLiked ? Colors.redAccent : Colors.white,
+                  key: ValueKey<bool>(musicItem!.isLiked),
                   size: 24,
                 ),
-              )),
+              ),
             ),
           ],
         ),

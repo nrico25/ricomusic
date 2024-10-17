@@ -8,7 +8,7 @@ class MyBindings extends Bindings{
   void dependencies(){
     Get.lazyPut(() => DashboardController());
     Get.lazyPut(() => SearchLogic());
-    Get.lazyPut(() => LikeController());
+    //Get.lazyPut(() => LikeController());
 
   }
 }

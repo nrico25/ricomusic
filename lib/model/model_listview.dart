@@ -4,7 +4,7 @@ class ModelListview {
   final String artist;
   final String streams;
   final String imagePath;
-  bool isLiked; // New field to indicate liked status
+  bool isLiked;
 
   ModelListview({
     this.id,
@@ -14,8 +14,6 @@ class ModelListview {
     required this.imagePath,
     this.isLiked = false,
   });
-
-  // Convert a ModelListview object into a Map object
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -27,7 +25,8 @@ class ModelListview {
     };
   }
 
-  // Convert a Map object into a ModelListview object
+  // Convert a Map object into a Task object
+  // dari database ke UI dalam bentuk object
   factory ModelListview.fromMap(Map<String, dynamic> map) {
     return ModelListview(
       id: map['id'],
