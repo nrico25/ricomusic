@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ricomusic/controlleres/likeController.dart';
 import 'package:ricomusic/model/listItem1.dart';
 import 'package:ricomusic/widget/songList.dart';
 import 'package:ricomusic/widget/songTrend.dart';
@@ -7,10 +8,14 @@ import 'package:ricomusic/model/model_listview.dart';
 import 'package:ricomusic/widget/mycolor.dart';
 
 class HomeMenu extends StatelessWidget {
+
+  final Likecontroller likecontroller = Get.put(Likecontroller());
+
   HomeMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    likecontroller.loadTasks();
     return Scaffold(
       backgroundColor: darkBlue,
       body: SafeArea(
@@ -57,6 +62,7 @@ class HomeMenu extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: musicTrends.length,
                     itemBuilder: (context, index) {
+<<<<<<< Updated upstream
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
@@ -66,6 +72,9 @@ class HomeMenu extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       );
+=======
+                      return Songtrend(musicTrends: musicTrends[index]);
+>>>>>>> Stashed changes
                     },
                   ),
                 ),
@@ -99,6 +108,7 @@ class HomeMenu extends StatelessWidget {
     );
   }
 }
+
 
 void main() {
   runApp(GetMaterialApp(

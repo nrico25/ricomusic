@@ -11,6 +11,7 @@ class LibraryMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    likecontroller.loadTasks();
     return Scaffold(
       backgroundColor: darkBlue, 
       body: SafeArea( 
@@ -31,15 +32,25 @@ class LibraryMenu extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-
-               ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(), 
-                  itemCount: topAlbumSongs.length, 
-                  itemBuilder: (context, index) {
-                    return MusicCard(musicItem: topAlbumSongs[index]);
-                  },
-                ),
+                Obx(() {
+                  if (likecontroller.tasks.isEmpty) {
+                    return Center(
+                      child: Text('Tidak ada lagu yang disukai', style: TextStyle(color: Colors.white)),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: likecontroller.tasks.length,
+                    itemBuilder: (context, index) {
+                      final song = likecontroller.tasks[index];
+                      return MusicCard(
+                        musicItem: song,
+                        allowDeletion: true,
+                      );
+                    },
+                  );
+                }),
               ],
             ),
           ),

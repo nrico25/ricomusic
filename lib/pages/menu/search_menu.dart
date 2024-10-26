@@ -8,6 +8,7 @@ import 'package:ricomusic/widget/mycolor.dart';
 import 'package:ricomusic/controlleres/search_controller.dart'; 
 
 class SearchMenu extends StatelessWidget {
+  
   const SearchMenu({super.key});
 
   @override
