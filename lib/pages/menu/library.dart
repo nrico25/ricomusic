@@ -39,7 +39,8 @@ class LibraryMenu extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final song = likecontroller.tasks[index];
                       return MusicCard(
-                        musicItem: song, // Pass the liked song data to MusicCard
+                        musicItem: song,
+                        allowDeletion: true, // Pass the liked song data to MusicCard
                       );
                     },
                   );

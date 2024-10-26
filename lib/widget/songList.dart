@@ -6,9 +6,10 @@ import 'package:ricomusic/widget/detailPage.dart';
 
 class MusicCard extends StatelessWidget {
   final ModelListview musicItem;
+  bool allowDeletion = false;
   final Likecontroller likecontroller = Get.put(Likecontroller());
 
-  MusicCard({required this.musicItem});
+  MusicCard({super.key, required this.musicItem, this.allowDeletion = false});
 
   @override
   Widget build(BuildContext context) {
@@ -79,25 +80,32 @@ class MusicCard extends StatelessWidget {
             const SizedBox(width: 8),
             GestureDetector(
               onTap: () {
-                if (!musicItem!.isLiked) {
-                  likecontroller.addTask(musicItem!);
-                  Get.snackbar('Info', '${musicItem!.title} added to favorites');
+                if (likecontroller.getLikedById(musicItem.id!).value) {
+                  if (allowDeletion) {
+                    likecontroller.deleteTask(musicItem.id!);
+                    Get.snackbar(
+                        'Info', '${musicItem!.title} removed from favorites.',
+                        backgroundColor: Colors.black87,
+                        colorText: Colors.white);
+                  } else {
+                    Get.snackbar(
+                        'Error', 'You can only remove favorites from Library.',
+                        backgroundColor: Colors.black87,
+                        colorText: Colors.white);
+                  }
                 } else {
-                  Get.snackbar('Info', 'You can only unlike this song in Library Menu');
+                  likecontroller.addTask(musicItem!);
+                  Get.snackbar(
+                      'Info', '${musicItem!.title} added to favorites.',
+                      backgroundColor: Colors.black87, colorText: Colors.white);
                 }
               },
-              child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(scale: animation, child: child);
-                },
-                child: Icon(
-                  musicItem!.isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: musicItem!.isLiked ? Colors.redAccent : Colors.white,
-                  key: ValueKey<bool>(musicItem!.isLiked),
-                  size: 24,
-                ),
-              ),
+              child: Obx(()=>Icon(
+                likecontroller.getLikedById(musicItem.id!).value ? Icons.favorite : Icons.favorite_border,
+                color: likecontroller.getLikedById(musicItem.id!).value ? Colors.redAccent : Colors.white,
+                key: ValueKey<bool>(likecontroller.getLikedById(musicItem.id!).value),
+                size: 24,
+              )),
             ),
           ],
         ),

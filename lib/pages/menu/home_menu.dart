@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ricomusic/controlleres/likeController.dart';
 import 'package:ricomusic/model/listItem1.dart';
 import 'package:ricomusic/widget/songList.dart';
 import 'package:ricomusic/widget/songTrend.dart';
@@ -7,10 +8,13 @@ import 'package:ricomusic/model/model_listview.dart';
 import 'package:ricomusic/widget/mycolor.dart';
 
 class HomeMenu extends StatelessWidget {
+  final Likecontroller likecontroller = Get.put(Likecontroller());
   HomeMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Memanggil loadTasks untuk memuat data yang disukai
+    likecontroller.loadTasks();
     return Scaffold(
       backgroundColor: darkBlue,
       body: SafeArea(

@@ -61,4 +61,16 @@ class Likecontroller extends GetxController{
     await dbClient!.delete('tasks', where: 'id = ?', whereArgs: [id]);
     loadTasks();
   }
+
+  Rx<bool> getLikedById(int id) {
+  // Assuming tasks is a list of models with properties `id` and `isLiked`
+  for (var model in tasks) {
+    if (model.id == id) {
+      return true.obs; // Return the isLiked status if id matches
+    }
+  }
+  return false.obs; // Return false if no matching id is found
+}
+
+  
 }
